@@ -24,8 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let previousUseKey = "App Prior Launch Key"
         
-        let defaultCenter: CLLocationCoordinate2D?
-        let defaultSpan: MKCoordinateSpan?
+//        let defaultCenter: CLLocationCoordinate2D?
+//        let defaultSpan: MKCoordinateSpan?
         
         let previousLatitude: Double
         let previousLongitude: Double
@@ -42,8 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("The app has not been used before")
             
             /* This is the default view of North America*/
-            defaultCenter = CLLocationCoordinate2D(latitude: 37.13283999999998, longitude: -95.785579999999996)
-            defaultSpan = MKCoordinateSpan(latitudeDelta: 72.355996899647238, longitudeDelta: 61.276016959789544)
+//            defaultCenter = CLLocationCoordinate2D(latitude: 37.13283999999998, longitude: -95.785579999999996)
+//            defaultSpan = MKCoordinateSpan(latitudeDelta: 72.355996899647238, longitudeDelta: 61.276016959789544)
             
             previousLatitude = 37.13283999999998
             previousLongitude = -95.785579999999996
