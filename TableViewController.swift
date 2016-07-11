@@ -8,9 +8,9 @@
 
 import UIKit
 
-var places = [Dictionary<String,String>()]
+var places = [[String: String]]()  //[Dictionary<String,String>()]
 
-var activePlace = -1 // minus one to indicate no active place s
+var activePlace = -1 // minus one to indicate no active places
 
 class TableViewController: UITableViewController {
 
@@ -29,11 +29,6 @@ class TableViewController: UITableViewController {
             
             places.append(["name":"Bodleian Library", "lat":"51.754067", "lon":"-1.254032"])
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source

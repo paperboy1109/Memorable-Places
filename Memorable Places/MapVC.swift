@@ -1,24 +1,31 @@
 //
-//  ViewController.swift
+//  MapVC.swift
 //  Memorable Places
 //
-//  Created by Daniel J Janiak on 2/13/16.
+//  Created by Daniel J Janiak on 7/11/16.
 //  Copyright © 2016 Daniel J Janiak. All rights reserved.
 //
 
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class MapVC: UIViewController {
+    
+    
+    // MARK: - Properties
     
     var manager: CLLocationManager!
     
+    // MARK: - Outlets
     
     @IBOutlet var map: MKMapView!
-
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        map.delegate = self
         
         manager = CLLocationManager()
         manager.delegate = self
@@ -47,7 +54,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             self.map.setRegion(region, animated: true)
             
             // Make an annotation
-            var annotation = MKPointAnnotation()
+            let annotation = MKPointAnnotation()
             
             annotation.coordinate = coordinate
             
@@ -55,14 +62,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             annotation.title = places[activePlace]["name"]
             
             self.map.addAnnotation(annotation)
-
             
         }
         
-
-
         
-        var uilpgr = UILongPressGestureRecognizer(target: self, action: "action:") // colon used to make sure information is passed
+        // let uilpgr = UILongPressGestureRecognizer(target: self, action: "action:") // colon used to make sure information is passed
+        let uilpgr = UILongPressGestureRecognizer(target: self, action: #selector(MapVC.action(_:))) // colon used to make sure information is passed
         
         uilpgr.minimumPressDuration = 2.0
         
@@ -75,12 +80,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Only save a location once for a given long press
         if gestureRecognizer.state == UIGestureRecognizerState.Began {
             
-            var touchPoint = gestureRecognizer.locationInView(self.map)
+            /* Get the tapped location */
             
-            var newCoordinate = self.map.convertPoint(touchPoint, toCoordinateFromView: self.map)
+            let touchPoint = gestureRecognizer.locationInView(self.map)
             
-            // Get the user's location
-            var location = CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude)
+            let newCoordinate = self.map.convertPoint(touchPoint, toCoordinateFromView: self.map)
+            
+            let location = CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude)
+            
             CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
                 
                 var title = ""
@@ -119,23 +126,72 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 
                 
                 // Make an annotation
-                var annotation = MKPointAnnotation()
-                
+                let annotation = MKPointAnnotation()
                 annotation.coordinate = newCoordinate
-                
-                //annotation.title = "New Annotation"
                 annotation.title = title
                 
                 self.map.addAnnotation(annotation)
             })
             
-
-            
-            
-            
         }
     }
     
+    
+    
+    
+    
+}
+
+
+
+
+extension MapVC: MKMapViewDelegate {
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let identifier = "TravelLocation"
+        
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
+        
+        if annotationView == nil {
+            
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
+            
+            let btn = UIButton(type: .DetailDisclosure)
+            annotationView!.rightCalloutAccessoryView = btn
+            
+        } else {
+            
+            annotationView!.annotation = annotation
+        }
+        
+        return annotationView
+        
+    }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        /* For debugging only
+         // What came with the annotationView?
+         print("\n *** calloutAccessoryControlTapped has been called *** ")
+         //print(self.studentInfo.first)
+         
+         // Found it!
+         print(view.annotation?.subtitle)
+         */
+        
+        
+    }
+    
+    
+    
+}
+
+
+
+
+extension MapVC: CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -157,14 +213,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let region:MKCoordinateRegion = MKCoordinateRegionMake(coordinate, span)
         
         self.map.setRegion(region, animated: true)
-        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
+    
 }
+
+
+
+
+
 
