@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4E4F0D191D340646003817D0 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4F0D181D340646003817D0 /* MapVC.swift */; };
+		4E4F0D1D1D3421AA003817D0 /* PhotoAlbumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4F0D1C1D3421AA003817D0 /* PhotoAlbumVC.swift */; };
 		4EC1BEBF1C6FC9040040E3D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC1BEBE1C6FC9040040E3D3 /* AppDelegate.swift */; };
 		4EC1BEC41C6FC9040040E3D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EC1BEC21C6FC9040040E3D3 /* Main.storyboard */; };
 		4EC1BEC61C6FC9040040E3D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EC1BEC51C6FC9040040E3D3 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		4E4F0D181D340646003817D0 /* MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		4E4F0D1C1D3421AA003817D0 /* PhotoAlbumVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbumVC.swift; sourceTree = "<group>"; };
 		4EC1BEBB1C6FC9040040E3D3 /* Memorable Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Memorable Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EC1BEBE1C6FC9040040E3D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EC1BEC31C6FC9040040E3D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -44,8 +46,20 @@
 			isa = PBXGroup;
 			children = (
 				4E4F0D181D340646003817D0 /* MapVC.swift */,
+				4EC1BED01C6FCD460040E3D3 /* TableViewController.swift */,
+				4E4F0D1C1D3421AA003817D0 /* PhotoAlbumVC.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		4E4F0D1B1D3409D3003817D0 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				4EC1BEC71C6FC9040040E3D3 /* LaunchScreen.storyboard */,
+				4EC1BEC51C6FC9040040E3D3 /* Assets.xcassets */,
+				4EC1BEC21C6FC9040040E3D3 /* Main.storyboard */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		4EC1BEB21C6FC9040040E3D3 = {
@@ -68,12 +82,9 @@
 		4EC1BEBD1C6FC9040040E3D3 /* Memorable Places */ = {
 			isa = PBXGroup;
 			children = (
-				4E4F0D1A1D340657003817D0 /* Controller */,
 				4EC1BEBE1C6FC9040040E3D3 /* AppDelegate.swift */,
-				4EC1BED01C6FCD460040E3D3 /* TableViewController.swift */,
-				4EC1BEC21C6FC9040040E3D3 /* Main.storyboard */,
-				4EC1BEC51C6FC9040040E3D3 /* Assets.xcassets */,
-				4EC1BEC71C6FC9040040E3D3 /* LaunchScreen.storyboard */,
+				4E4F0D1B1D3409D3003817D0 /* Assets */,
+				4E4F0D1A1D340657003817D0 /* Controller */,
 				4EC1BECA1C6FC9040040E3D3 /* Info.plist */,
 			);
 			path = "Memorable Places";
@@ -152,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E4F0D191D340646003817D0 /* MapVC.swift in Sources */,
+				4E4F0D1D1D3421AA003817D0 /* PhotoAlbumVC.swift in Sources */,
 				4EC1BED11C6FCD460040E3D3 /* TableViewController.swift in Sources */,
 				4EC1BEBF1C6FC9040040E3D3 /* AppDelegate.swift in Sources */,
 			);

@@ -16,6 +16,10 @@ class MapVC: UIViewController {
     
     var manager: CLLocationManager!
     
+    let latitudeKey = "Latitude Key"
+    let longitudeKey = "Longitude Key"
+    let previousUseKey = "App Prior Launch Key"
+    
     // MARK: - Outlets
     
     @IBOutlet var map: MKMapView!
@@ -24,6 +28,10 @@ class MapVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // For debugging:
+        let flotsam = NSUserDefaults.standardUserDefaults().valueForKey(latitudeKey) as? Float
+        print("\n\nHere is flotsam: \(flotsam)")
         
         map.delegate = self
         
@@ -158,8 +166,8 @@ extension MapVC: MKMapViewDelegate {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView!.canShowCallout = true
             
-            let btn = UIButton(type: .DetailDisclosure)
-            annotationView!.rightCalloutAccessoryView = btn
+            let annotationBtn = UIButton(type: .DetailDisclosure)
+            annotationView!.rightCalloutAccessoryView = annotationBtn
             
         } else {
             
@@ -181,9 +189,18 @@ extension MapVC: MKMapViewDelegate {
          print(view.annotation?.subtitle)
          */
         
-        
+        /* Transition to the Photo Album view when an existing pin is tapped */
+        self.performSegueWithIdentifier("ToPhotoAlbumPlaceholder", sender: control)
     }
     
+    
+    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        print("\nMap view region changed, saving new position\n")
+        let currentRegion = mapView.region
+        print("Here is currentRegion: \(currentRegion)")
+        print("Here is currentRegion.center: \(currentRegion.center)")
+        print("Here is currentRegion.span: \(currentRegion.span)")
+    }
     
     
 }
